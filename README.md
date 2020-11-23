@@ -3,7 +3,7 @@
 - [Project Euler （本家）](https://projecteuler.net/)
 - [Project Euler （日本語訳）](http://odz.sakura.ne.jp/projecteuler/)
 
-新しい記法の確認や気が向いた時などに解いています。
+記法の確認や気が向いた時などに解いています。
 
 ## 実行環境
 
