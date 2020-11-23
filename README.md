@@ -7,7 +7,7 @@
 
 ## 実行環境
 
-![CSharp: Build and Test](https://github.com/ushibutatory/pj-euler-dotnet/workflows/CSharp:%20Build%20and%20Test/badge.svg)
-![CSharp: Publish](https://github.com/ushibutatory/pj-euler-dotnet/workflows/CSharp:%20Publish/badge.svg)
+![Build and Test](https://github.com/ushibutatory/pj-euler-dotnet/workflows/CSharp:%20Build%20and%20Test/badge.svg)
+![Publish](https://github.com/ushibutatory/pj-euler-dotnet/workflows/CSharp:%20Publish/badge.svg)
 
-[Heroku App](https://pj-euler-csharp.herokuapp.com/)
+[Heroku App](https://ushibutatory-pj-euler-dotnet.herokuapp.com/)
