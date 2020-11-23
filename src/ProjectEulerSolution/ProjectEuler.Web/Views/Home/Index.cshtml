@@ -1,0 +1,14 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Project Euler Challenge by C#</h1>
+    <ul class="list-group">
+        @foreach (var problem in Model.Problems)
+        {
+            <li><a href=@($"/Problems/{problem.Id}")>@($"Problem{problem.Id}: {problem.Title}")</a></li>
+        }
+    </ul>
+</div>

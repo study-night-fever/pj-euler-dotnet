@@ -1,0 +1,10 @@
+﻿@model ProblemInfo
+<div class="problem-header">
+    <h2>Problem @Model.Id : @Model.Title</h2>
+    <aside>
+        <a href=@Model.OriginalPage target="_blank">original page</a>
+    </aside>
+</div>
+<div class="problem-content">
+    @Html.Raw(Model.ContentHtml)
+</div>
