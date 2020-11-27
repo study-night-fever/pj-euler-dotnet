@@ -1,10 +1,14 @@
 ﻿@model ProblemInfo
-<div class="problem-header">
-    <h2>Problem @Model.Id : @Model.Title</h2>
-    <aside>
-        <a href=@Model.OriginalPage target="_blank">original page</a>
-    </aside>
-</div>
-<div class="problem-content">
-    @Html.Raw(Model.ContentHtml)
+<div class="card">
+    <div class="card-header">
+        <h2>Problem @Model.Id : @Model.Title</h2>
+    </div>
+    <div class="card-body">
+        <blockquote>
+            @Html.Raw(Model.ContentHtml)
+            <div class="text-right">
+                <a class="card-link" href=@Model.OriginalPage target="_blank">original page</a>
+            </div>
+        </blockquote>
+    </div>
 </div>
