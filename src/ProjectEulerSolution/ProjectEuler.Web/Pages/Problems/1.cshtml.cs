@@ -21,7 +21,11 @@ namespace ProjectEuler.Web.Pages.Problems
 
         public void OnGet()
         {
-            Input = InputValues.Default;
+            Input = new InputValues
+            {
+                // 問題文より
+                Value = 10,
+            };
             Output = OutputValues.None;
         }
 
@@ -55,11 +59,6 @@ namespace ProjectEuler.Web.Pages.Problems
             [Required]
             [Range(0, int.MaxValue)]
             public int Value { get; set; }
-
-            public static InputValues Default => new InputValues
-            {
-                Value = 0,
-            };
         }
 
         /// <summary>

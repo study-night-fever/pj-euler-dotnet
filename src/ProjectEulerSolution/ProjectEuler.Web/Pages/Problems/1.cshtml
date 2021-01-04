@@ -37,7 +37,18 @@
             </tr>
             <tr>
                 <th>List</th>
-                <td>@string.Join(", ", Model.Output.List)</td>
+                <td>
+                    @{
+                        if (Model.Output.List.Count() == 0)
+                        {
+                            @:-
+                        }
+                        else
+                        {
+                            @:@string.Join(", ", Model.Output.List)
+                        }
+                    }
+                </td>
             </tr>
         </table>
     }
