@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 
 namespace ProjectEuler.Web.Controllers
@@ -17,11 +16,11 @@ namespace ProjectEuler.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(JsonConvert.SerializeObject(new
+            return Ok(new
             {
                 utc = DateTimeOffset.UtcNow,
                 local = DateTimeOffset.Now,
-            }));
+            });
         }
     }
 }

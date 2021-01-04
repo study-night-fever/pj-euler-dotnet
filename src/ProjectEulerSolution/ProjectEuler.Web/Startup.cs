@@ -22,7 +22,7 @@ namespace ProjectEuler.Web
             // for Web API
             services.AddControllers();
 
-            // for Web Page
+            // for Razor Page
             services.AddRazorPages();
 
             // Setup Problems
@@ -53,9 +53,11 @@ namespace ProjectEuler.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
-
+                // for Web API
                 endpoints.MapControllers();
+
+                // for Razor Pages
+                endpoints.MapRazorPages();
             });
         }
     }
