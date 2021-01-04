@@ -1,33 +1,52 @@
 ﻿@page
 @model Problem1PageModel
+@{
+    ViewData["Title"] = "Problem1";
+}
 @await Html.PartialAsync("_ProblemInfo", await Model.GetProblemInfoAsync())
-<div>
-    <form method="post">
-        <div class="form-group">
-            <label for="n">n</label>
-            <input id="n" class="form-control" type="number" asp-for="Input.N" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mt-3">
+                <div class="card-header">
+                    Input
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="value">Value</label>
+                            <input id="value" class="form-control" type="number" asp-for="Input.Value" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Calculate</button>
-    </form>
-</div>
-<div>
-    <div>
-        @if (Model.Output.IsNone)
-        {
-            <span>-</span>
-        }
-        else
-        {
-            <table>
-                <tr>
-                    <th>Sum</th>
-                    <td>@Model.Output.Sum.ToString("#,##0")</td>
-                </tr>
-                <tr>
-                    <th>List</th>
-                    <td>@string.Join(", ", Model.Output.List)</td>
-                </tr>
-            </table>
-        }
+        <div class="col-md-6">
+            <div class="card mt-3">
+                <div class="card-header">
+                    Output
+                </div>
+                <div class="card-body">
+                    @if (Model.Output.IsNone)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Sum</th>
+                                <td>@Model.Output.Sum.ToString("#,##0")</td>
+                            </tr>
+                            <tr>
+                                <th>List</th>
+                                <td>@string.Join(", ", Model.Output.List)</td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>

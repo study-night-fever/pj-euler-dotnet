@@ -27,7 +27,8 @@ namespace ProjectEuler.Web.Pages.Problems
 
         public void OnPost()
         {
-            var list = _calculator.List(Input.N);
+            var list = _calculator.List(Input.Value);
+
             Output = new OutputValues
             {
                 Sum = list.Sum(),
@@ -53,11 +54,11 @@ namespace ProjectEuler.Web.Pages.Problems
         {
             [Required]
             [Range(0, int.MaxValue)]
-            public int N { get; set; }
+            public int Value { get; set; }
 
             public static InputValues Default => new InputValues
             {
-                N = 0,
+                Value = 0,
             };
         }
 
