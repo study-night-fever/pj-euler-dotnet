@@ -2,7 +2,7 @@
 
 namespace ProjectEuler.Problem1
 {
-    public class Calculator
+    internal class Calculator : ICalculator
     {
         public int Calc(int n) => (n > 0)
             ? Enumerable.Range(1, n - 1)

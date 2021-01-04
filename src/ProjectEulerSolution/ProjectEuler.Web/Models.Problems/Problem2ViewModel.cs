@@ -1,4 +1,4 @@
-﻿using ProjectEuler.Web.Models.Problems.Abstracts;
+﻿using ProjectEuler.Web.Models.Abstracts;
 
 namespace ProjectEuler.Web.Models.Problems
 {

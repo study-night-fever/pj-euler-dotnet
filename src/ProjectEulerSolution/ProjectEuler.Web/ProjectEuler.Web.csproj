@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.14.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Problem1\ProjectEuler.Problem1\ProjectEuler.Problem1.csproj" />
+    <ProjectReference Include="..\Problem2\ProjectEuler.Problem2\ProjectEuler.Problem2.csproj" />
   </ItemGroup>
 
 </Project>

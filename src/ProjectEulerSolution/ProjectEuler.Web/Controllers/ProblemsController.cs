@@ -1,17 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using ProjectEuler.Web.Controllers.Abstracts;
 using ProjectEuler.Web.Models;
+using ProjectEuler.Web.Models.Abstracts;
 using ProjectEuler.Web.Models.Problems;
-using ProjectEuler.Web.Models.Problems.Abstracts;
 using System;
 using System.Threading.Tasks;
 
 namespace ProjectEuler.Web.Controllers
 {
-    public class ProblemsController : Controller
+    public class ProblemsController : BaseController
     {
+        public ProblemsController(ILogger<ProblemsController> logger) : base(logger)
+        {
+        }
+
         public async Task<IActionResult> IndexAsync(int id)
         {
-            var viewModel = new Func<BaseProblemViewModel>(() =>
+            var viewModel = new Func<IProblemViewModel>(() =>
             {
                 return id switch
                 {

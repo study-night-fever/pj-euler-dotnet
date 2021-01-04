@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ProjectEuler.Problem2
 {
-    public class Calculator
+    internal class Calculator : ICalculator
     {
         /// <summary>
         /// 指定した値以下のフィボナッチ数のうち、偶数値の項の総和を返します。
