@@ -5,9 +5,51 @@
 }
 
 @section Input {
-    ここに入力フォームを作る
+    <form method="post">
+        <div class="form-group">
+            <label for="value">Value</label>
+            <input id="value" class="form-control" type="number" min="0" asp-for="Input.Value" />
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
 }
 
 @section Output {
-    ここに計算結果を表示する
+    @if (Model.Output.IsNone)
+    {
+        <table class="table table-hover">
+            <tr>
+                <th>Sum</th>
+                <td>-</td>
+            </tr>
+            <tr>
+                <th>List</th>
+                <td>-</td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="table table-hover">
+            <tr>
+                <th>Sum</th>
+                <td>@Model.Output.Sum.ToString("#,##0")</td>
+            </tr>
+            <tr>
+                <th>List</th>
+                <td>
+                    @{
+                        if (Model.Output.List.Count() == 0)
+                        {
+                            @:-
+                        }
+                        else
+                        {
+                            @:@string.Join(", ", Model.Output.List)
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+    }
 }
