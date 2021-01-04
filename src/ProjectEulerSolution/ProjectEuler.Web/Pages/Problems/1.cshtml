@@ -1,52 +1,44 @@
 ﻿@page
 @model Problem1PageModel
 @{
-    ViewData["Title"] = "Problem1";
+    Layout = "~/Pages/Shared/_LayoutProblem.cshtml";
 }
-@await Html.PartialAsync("_ProblemInfo", await Model.GetProblemInfoAsync())
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mt-3">
-                <div class="card-header">
-                    Input
-                </div>
-                <div class="card-body">
-                    <form method="post">
-                        <div class="form-group">
-                            <label for="value">Value</label>
-                            <input id="value" class="form-control" type="number" asp-for="Input.Value" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Calculate</button>
-                    </form>
-                </div>
-            </div>
+
+@section Input {
+    <form method="post">
+        <div class="form-group">
+            <label for="value">Value</label>
+            <input id="value" class="form-control" type="number" min="0" asp-for="Input.Value" />
         </div>
-        <div class="col-md-6">
-            <div class="card mt-3">
-                <div class="card-header">
-                    Output
-                </div>
-                <div class="card-body">
-                    @if (Model.Output.IsNone)
-                    {
-                        <span>-</span>
-                    }
-                    else
-                    {
-                        <table class="table table-hover">
-                            <tr>
-                                <th>Sum</th>
-                                <td>@Model.Output.Sum.ToString("#,##0")</td>
-                            </tr>
-                            <tr>
-                                <th>List</th>
-                                <td>@string.Join(", ", Model.Output.List)</td>
-                            </tr>
-                        </table>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+}
+
+@section Output {
+    @if (Model.Output.IsNone)
+    {
+        <table class="table table-hover">
+            <tr>
+                <th>Sum</th>
+                <td>-</td>
+            </tr>
+            <tr>
+                <th>List</th>
+                <td>-</td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="table table-hover">
+            <tr>
+                <th>Sum</th>
+                <td>@Model.Output.Sum.ToString("#,##0")</td>
+            </tr>
+            <tr>
+                <th>List</th>
+                <td>@string.Join(", ", Model.Output.List)</td>
+            </tr>
+        </table>
+    }
+}

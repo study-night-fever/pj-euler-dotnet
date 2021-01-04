@@ -1,14 +1,13 @@
 ﻿@page
 @model Problem2PageModel
 @{
-    ViewData["Title"] = "Problem2";
+    Layout = "~/Pages/Shared/_LayoutProblem.cshtml";
 }
-<div>
-    ここに説明文が入る
-</div>
-<div>
+
+@section Input {
     ここに入力フォームを作る
-</div>
-<div>
+}
+
+@section Output {
     ここに計算結果を表示する
-</div>
+}

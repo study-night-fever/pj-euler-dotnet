@@ -1,0 +1,33 @@
+﻿@model BaseProblemPageModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"Problem{Model.ProblemId}";
+}
+@await Html.PartialAsync("_ProblemInfo", await Model.GetProblemInfoAsync())
+<div class="container pl-0 pr-0">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mt-3">
+                <div class="card-header">
+                    Input
+                </div>
+                <div class="card-body">
+                    @RenderSection("Input", required: true)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mt-3">
+                <div class="card-header">
+                    Output
+                </div>
+                <div class="card-body">
+                    @RenderSection("Output", required: true)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
