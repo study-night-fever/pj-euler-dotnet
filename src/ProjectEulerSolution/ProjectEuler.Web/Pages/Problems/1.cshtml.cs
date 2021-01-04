@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectEuler.Problem1;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ProjectEuler.Web.Pages.Problems
 {
@@ -25,9 +27,11 @@ namespace ProjectEuler.Web.Pages.Problems
 
         public void OnPost()
         {
+            var list = _calculator.List(Input.N);
             Output = new OutputValues
             {
-                Result = _calculator.Calc(Input.N),
+                Sum = list.Sum(),
+                List = list,
             };
         }
 
@@ -62,7 +66,9 @@ namespace ProjectEuler.Web.Pages.Problems
         /// </summary>
         public class OutputValues
         {
-            public int Result { get; set; }
+            public int Sum { get; set; }
+
+            public IEnumerable<int> List { get; set; }
 
             public bool IsNone => this is NoOutput;
 
@@ -70,6 +76,11 @@ namespace ProjectEuler.Web.Pages.Problems
 
             private class NoOutput : OutputValues
             {
+                public NoOutput()
+                {
+                    Sum = 0;
+                    List = Enumerable.Empty<int>();
+                }
             }
         }
     }

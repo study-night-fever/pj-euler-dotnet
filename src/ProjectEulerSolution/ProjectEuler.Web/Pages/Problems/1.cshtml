@@ -18,7 +18,16 @@
         }
         else
         {
-            <span>@Model.Output.Result</span>
+            <table>
+                <tr>
+                    <th>Sum</th>
+                    <td>@Model.Output.Sum.ToString("#,##0")</td>
+                </tr>
+                <tr>
+                    <th>List</th>
+                    <td>@string.Join(", ", Model.Output.List)</td>
+                </tr>
+            </table>
         }
     </div>
 </div>

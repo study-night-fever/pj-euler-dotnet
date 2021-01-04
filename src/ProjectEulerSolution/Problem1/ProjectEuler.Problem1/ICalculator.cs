@@ -1,7 +1,11 @@
-﻿namespace ProjectEuler.Problem1
+﻿using System.Collections.Generic;
+
+namespace ProjectEuler.Problem1
 {
     public interface ICalculator
     {
-        public int Calc(int n);
+        public int Calculate(int n);
+
+        public IEnumerable<int> List(int n);
     }
 }
