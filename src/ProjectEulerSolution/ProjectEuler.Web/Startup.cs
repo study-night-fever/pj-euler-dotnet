@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using ProjectEuler.Problem1;
 using ProjectEuler.Problem2;
 
@@ -20,7 +19,11 @@ namespace ProjectEuler.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            // for Web API
+            services.AddControllers();
+
+            // for Web Page
+            services.AddRazorPages();
 
             // Setup Problems
             services.SetupForProblem1();
@@ -35,11 +38,12 @@ namespace ProjectEuler.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -49,13 +53,9 @@ namespace ProjectEuler.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "problems",
-                    pattern: "Problems/{id}",
-                    defaults: new { controller = "Problems", action = "Index" });
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+
+                endpoints.MapControllers();
             });
         }
     }

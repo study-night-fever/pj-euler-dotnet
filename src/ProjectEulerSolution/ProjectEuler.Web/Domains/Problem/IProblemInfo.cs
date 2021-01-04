@@ -4,38 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjectEuler.Web.Models
+namespace ProjectEuler.Web.Domains.Problem.Abstracts
 {
-    public class ProblemInfo
+    public interface IProblemInfo
     {
-        public int Id { get; private set; }
+        public int Id { get; }
 
-        public string Title { get; private set; }
+        public string Title { get; }
 
-        public string ContentHtml { get; private set; }
+        public string ContentHtml { get; }
 
-        public Uri OriginalPage { get; private set; }
+        public Uri OriginalPage { get; }
 
-        public class Builder
-        {
-            public int Id { get; set; }
-            public string Title { get; set; }
-            public string ContentHtml { get; set; }
-            public Uri OriginalPage { get; set; }
-
-            public ProblemInfo Build() => new ProblemInfo
-            {
-                Id = Id,
-                Title = Title,
-                ContentHtml = ContentHtml,
-                OriginalPage = OriginalPage,
-            };
-        }
-    }
-
-    public static class ProblemInfos
-    {
-        private static readonly IEnumerable<int> ProblemIds = new[]
+        private static readonly IEnumerable<int> _ProblemIds = new[]
         {
             1,
             2,
@@ -51,7 +32,7 @@ namespace ProjectEuler.Web.Models
         {
             if (_list == null)
             {
-                _list = await Task.WhenAll(ProblemIds
+                _list = await Task.WhenAll(_ProblemIds
                     .Select(async id =>
                     {
                         var uri = new Uri($"https://projecteuler.net/problem={id}");

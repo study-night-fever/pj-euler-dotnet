@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace ProjectEuler.Web.Controllers.Abstracts
+namespace ProjectEuler.Web.Controllers
 {
     public abstract class BaseController : Controller
     {
