@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ProjectEuler.Web.Tests.Models
+namespace ProjectEuler.Web.Tests.Domains.Problem
 {
     public class IProblemInfoTest
     {
