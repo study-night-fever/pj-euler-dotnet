@@ -1,11 +1,11 @@
 ﻿@model IProblemInfo
 <div class="card">
     <div class="card-header">
-        <h2>Problem @Model.Id : @Model.Title</h2>
+        <h2>Problem @Model.Id : @Html.Raw(Model.EncodedTitle)</h2>
     </div>
     <div class="card-body">
         <blockquote>
-            @Html.Raw(Model.ContentHtml)
+            @Html.Raw(Model.EncodedContentHtml)
             <div class="text-right">
                 <a class="card-link" href=@Model.OriginalPage target="_blank">original page</a>
             </div>

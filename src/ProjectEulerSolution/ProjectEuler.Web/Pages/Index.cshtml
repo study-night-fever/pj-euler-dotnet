@@ -8,7 +8,7 @@
     <div class="list-group text-left">
         @foreach (var problem in Model.Problems)
         {
-            <a class="list-group-item list-group-item-action" href=@($"/Problems/{problem.Id}")>@($"Problem{problem.Id}: {problem.Title}")</a>
+            <a class="list-group-item list-group-item-action" href=@($"/Problems/{problem.Id}")>@($"Problem{problem.Id}: ")@Html.Raw(problem.EncodedTitle)</a>
         }
     </div>
 </div>

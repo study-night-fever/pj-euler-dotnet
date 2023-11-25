@@ -12,7 +12,11 @@ namespace ProjectEuler.Web.Domains.Problem.Abstracts
 
         public string Title { get; }
 
+        public string EncodedTitle { get; }
+
         public string ContentHtml { get; }
+
+        public string EncodedContentHtml { get; }
 
         public Uri OriginalPage { get; }
 
