@@ -1,0 +1,26 @@
+name: Validate
+
+on:
+  push:
+    paths:
+      - src/**
+      - .github/workflows/validate.yml
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        uses: actions/setup-dotnet@v3
+      - name: Build
+        run: |
+          cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
+          dotnet build
+      - name: Test
+        run: |
+          cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
+          dotnet test --no-build
+    env:
+      SOLUTION_DIR: ./src/ProjectEulerSolution
