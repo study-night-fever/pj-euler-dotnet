@@ -7,7 +7,4 @@
 
 ## 実行環境
 
-![Build and Test](https://github.com/ushibutatory/pj-euler-dotnet/workflows/Build%20and%20Test/badge.svg)
-![Publish](https://github.com/ushibutatory/pj-euler-dotnet/workflows/Publish/badge.svg)
-
-[Heroku App](https://ushibutatory-pj-euler-dotnet.herokuapp.com/)
+[Azure](https://pj-euler-dotnet.azurewebsites.net/)
