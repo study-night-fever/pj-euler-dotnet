@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ProjectEuler.Web.Domains.Problem.Abstracts
 {
@@ -8,9 +9,22 @@ namespace ProjectEuler.Web.Domains.Problem.Abstracts
 
         public string Title { get; private set; }
 
+        public string EncodedTitle => _Encode(Title);
+
         public string ContentHtml { get; private set; }
 
+        public string EncodedContentHtml => _Encode(ContentHtml);
+
         public Uri OriginalPage { get; private set; }
+
+        private string _Encode(string text)
+        {
+            var result = text;
+            result = Regex.Replace(result, @"\$\$([^$]+)\$\$", "<center><b>$1</b></center>");
+            result = Regex.Replace(result, @"\$([^$]+)\$", "<b>$1</b>");
+            result = Regex.Replace(result, @"\\dots", "...");
+            return result;
+        }
 
         public class Builder
         {
