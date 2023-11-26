@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    paths:
+      - src/**
+      - .github/workflows/deploy.yml
+
+env:
+  SOLUTION_DIR: /src/ProjectEulerSolution
+  PACKAGE_PATH: ProjectEuler.Web/published
+  PACKAGE_NAME: dist
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+      - name: Publish
+        run: |
+          cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
+          dotnet restore
+          dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+          dotnet publish --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --output "${{ env.PACKAGE_PATH }}"
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+          path: ${{ env.PACKAGE_PATH }}
+    env:
+      BUILD_CONFIGURATION: Release
+  deploy:
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+          path: ${{ env.PACKAGE_PATH }}
+      - name: Deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_APP_NAME }}
+          publish-profile: ${{ env.AZURE_APP_PUBLISH_PROFILE }}
+          package: ${{ env.PACKAGE_PATH }}
+    env:
+      AZURE_APP_NAME: pj-euler-dotnet
+      AZURE_APP_PUBLISH_PROFILE: ${{ secrets.AZURE_APP_PUBLISH_PROFILE }}
