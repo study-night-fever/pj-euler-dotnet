@@ -27,8 +27,6 @@ jobs:
           dotnet publish ${{ env.PROJECT_DIR}} -c ${{ env.BUILD_CONFIGURATION }} --no-build --output "${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}"
         env:
           PROJECT_DIR: ProjectEuler.Web
-      - name: List files in published directory
-        run: ls -R ${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -44,7 +42,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.PACKAGE_NAME }}
-          path: "${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}"
+          path: ${{ env.PACKAGE_PATH }}
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
