@@ -8,7 +8,7 @@ on:
 
 env:
   SOLUTION_DIR: /src/ProjectEulerSolution
-  PACKAGE_PATH: /published
+  PACKAGE_PATH: published
   PACKAGE_NAME: app
 
 jobs:
