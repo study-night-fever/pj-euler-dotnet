@@ -8,8 +8,8 @@ on:
 
 env:
   SOLUTION_DIR: /src/ProjectEulerSolution
-  PACKAGE_PATH: ProjectEuler.Web/published
-  PACKAGE_NAME: dist
+  PACKAGE_PATH: /published
+  PACKAGE_NAME: app
 
 jobs:
   publish:
@@ -23,8 +23,10 @@ jobs:
         run: |
           cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
           dotnet restore
-          dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-          dotnet publish --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --output "${{ env.PACKAGE_PATH }}"
+          dotnet build -c ${{ env.BUILD_CONFIGURATION }} --no-restore
+          dotnet publish ${{ env.PROJECT_DIR}} -c ${{ env.BUILD_CONFIGURATION }} --no-build --output "${{ env.PACKAGE_PATH }}"
+        env:
+          PROJECT_DIR: ProjectEuler.Web
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
