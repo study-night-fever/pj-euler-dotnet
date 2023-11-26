@@ -24,7 +24,7 @@ jobs:
           cd "${GITHUB_WORKSPACE}/${SOLUTION_DIR}/"
           dotnet restore
           dotnet build -c ${{ env.BUILD_CONFIGURATION }} --no-restore
-          dotnet publish ${{ env.PROJECT_DIR}} -c ${{ env.BUILD_CONFIGURATION }} --no-build --output "${{ env.PACKAGE_PATH }}"
+          dotnet publish ${{ env.PROJECT_DIR}} -c ${{ env.BUILD_CONFIGURATION }} --no-build --output "${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}"
         env:
           PROJECT_DIR: ProjectEuler.Web
       - name: Upload Artifacts
@@ -42,13 +42,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.PACKAGE_NAME }}
-          path: ${{ env.PACKAGE_PATH }}
+          path: "${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}"
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_APP_NAME }}
           publish-profile: ${{ env.AZURE_APP_PUBLISH_PROFILE }}
-          package: ${{ env.PACKAGE_PATH }}
+          package: "${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}"
     env:
       AZURE_APP_NAME: pj-euler-dotnet
       AZURE_APP_PUBLISH_PROFILE: ${{ secrets.AZURE_APP_PUBLISH_PROFILE }}
