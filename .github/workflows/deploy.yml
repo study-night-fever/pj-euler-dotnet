@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.PACKAGE_NAME }}
-          path: "${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}"
+          path: ${GITHUB_WORKSPACE}/${{ env.PACKAGE_PATH }}
     env:
       BUILD_CONFIGURATION: Release
   deploy:
